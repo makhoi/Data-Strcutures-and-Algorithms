@@ -1,7 +1,6 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         unique = sorted(set(nums))
-        for i in range(len(unique)):
-            nums[i] = unique[i]
+        nums[:len(unique)] = unique
         return len(unique)
         
