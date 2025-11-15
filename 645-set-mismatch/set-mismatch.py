@@ -24,8 +24,8 @@ class Solution:
 
         # Missing number
         missing_number = expected_sum - (actual_sum - duplicated_number)
-        if missing_number == 0:
-            missing_number = 2
+        # if missing_number == 0:
+        #     missing_number = 2
             
         result = []
         result.append(duplicated_number)
