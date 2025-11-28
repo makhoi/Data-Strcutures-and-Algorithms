@@ -1,27 +1,17 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        if len(magazine) < len(ransomNote):
-            return False
-        
-        magazin_map = {}
+        count_ransomNote = {}
+        for note in ransomNote: 
+            count_ransomNote[note] = count_ransomNote.get(note, 0) + 1
 
-        for element in magazine: 
-            if element not in magazin_map: 
-                magazin_map[element] = 1
-            magazin_map[element] += 1
+        count_magazine = {}
+        for ch in magazine: 
+            count_magazine[ch] = count_magazine.get(ch, 0) + 1
 
-        ransomNote_map = {}
-
-        for element in ransomNote:
-            if element not in ransomNote_map: 
-                ransomNote_map[element] = 1
-            ransomNote_map[element] += 1
-
-
-        for key,value in ransomNote_map.items():
-            if key not in magazin_map:
+        for ch in count_ransomNote: 
+            if ch not in count_magazine: 
                 return False
             else: 
-                if value > magazin_map[key]:
+                if count_ransomNote[ch] > count_magazine[ch]: 
                     return False
         return True
