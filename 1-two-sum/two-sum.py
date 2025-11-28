@@ -3,7 +3,9 @@ class Solution:
         seen = {}
 
         for index, num in enumerate(nums):
+            # check first
             diff = target - num
             if diff in seen:
-                return [seen[diff], index]
+                return [index, seen[diff]]
+            # insert
             seen[num] = index
