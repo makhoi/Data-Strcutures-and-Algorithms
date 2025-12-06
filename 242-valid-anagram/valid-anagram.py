@@ -1,13 +1,19 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s_frequency = {}
-        for ch in s:
-            s_frequency[ch] = s_frequency.get(ch, 0) + 1
+        if len(s) != len(t):
+            return False
+            
+        dict_s = {}
+        for ch in s: 
+            dict_s[ch] = dict_s.get(ch, 0) + 1
         
-        t_frequency = {}
-        for ch in t:
-            t_frequency[ch] = t_frequency.get(ch, 0) + 1
-        
-        if t_frequency == s_frequency:
-            return True
-        return False
+        dict_t = {}
+        for ch in t: 
+            dict_t[ch] = dict_t.get(ch, 0) + 1
+
+        for character, frequency in dict_s.items():
+            if character not in dict_t:
+                return False
+            if frequency != dict_t[character]:
+                return False
+        return True
