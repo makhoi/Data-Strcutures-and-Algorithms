@@ -1,42 +1,24 @@
 class Solution:
     def decodeMessage(self, key: str, message: str) -> str:
-        # ENCODE MESSAGE
-
-        # split sentence into single characters 
-        chars = []
+        # ENCODE
+        chars_map = {}
+        alphabet_letter = ord('a')
 
         for c in key: 
-            if c != " ":
-                chars.append(c)
-        
-        # remove duplicate from chars 
-        unique_chars = []
-        seen = set()
-
-        for c in chars: 
-            if c in seen: 
+            if c == " ":
                 continue
-            
-            seen.add(c)
-            unique_chars.append(c)
-            
 
-        # map each character in unique_chars to alphabet letters
-        chars_map = {}
-        alphabet = ord('a')
+            if c not in chars_map: 
+                chars_map[c] = chr(alphabet_letter)
+                alphabet_letter += 1
 
-        for c in unique_chars: 
-            chars_map[c] = chr(alphabet)
-            alphabet += 1
-
-        # DECODE 
+        # DECODE
         result = []
 
-        for c in message: 
+        for c in message:
             if c == " ":
-                result.append(" ")
-            else:
+                result.append(c)
+            else: 
                 result.append(chars_map[c])
-
-        return ''.join(result)
-        
+                
+        return "".join(result)
