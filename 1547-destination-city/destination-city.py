@@ -1,10 +1,10 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        possible_routes = {}
+        arrivals = {}
 
         for cityA, cityB in paths: 
-            possible_routes[cityA] = cityB
+            arrivals[cityA] = cityB
 
-        for destination in possible_routes.values():
-            if destination not in possible_routes:
-                return destination
+        for cityB in arrivals.values(): 
+            if cityB not in arrivals: 
+                return cityB
