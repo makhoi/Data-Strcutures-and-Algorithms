@@ -3,25 +3,25 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        # transpose 
-        ROWS = COLS = len(matrix) 
+        n = len(matrix)
 
-        transpose_matrix = [[0]*ROWS for _ in range(COLS)]
+        # Transpose 
+        t = [[0]*n for _ in range(n)]
 
-        for r in range(ROWS):
-            for c in range(COLS): 
-                transpose_matrix[c][r] = matrix[r][c]
-        
+        for r in range(n):
+            for c in range(n):
+                t[r][c] = matrix[c][r]
+
         # Rotate
-        for r in range(ROWS):
+        for r in range(n):
             left = 0
-            right = COLS - 1
-
-            while left < right: 
-                transpose_matrix[r][left], transpose_matrix[r][right] = transpose_matrix[r][right], transpose_matrix[r][left]
+            right = n - 1
+            while left < right:
+                t[r][left], t[r][right] = t[r][right], t[r][left]
                 left += 1
                 right -= 1
 
-        for r in range(ROWS):
-            matrix[r] = transpose_matrix[r]
+        for r in range(n):
+            matrix[r] = t[r]
+        
         
