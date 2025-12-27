@@ -1,11 +1,11 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-
+        
         def checkRow(r):
             seen = set()
             arr = board[r]
             for val in arr:
-                if val == ".":
+                if val == '.':
                     continue
                 if val in seen:
                     return False
@@ -15,7 +15,7 @@ class Solution:
         for r in range(9):
             if not checkRow(r):
                 return False
-        
+
         def checkCol(c):
             seen = set()
             for r in range(9):
@@ -26,17 +26,17 @@ class Solution:
                     return False
                 seen.add(val)
             return True
-        
+
         for c in range(9):
             if not checkCol(c):
                 return False
-        
-        def checkBoard(rowIdx,colIdx):
+
+        def checkBoard(rowIdx, colIdx):
             seen = set()
-            for r in range(rowIdx, rowIdx+3):
-                for c in range(colIdx, colIdx+3):
+            for r in range(rowIdx, rowIdx + 3):
+                for c in range(colIdx, colIdx + 3):
                     val = board[r][c]
-                    if val == ".":
+                    if val == '.':
                         continue
                     if val in seen:
                         return False
@@ -48,5 +48,4 @@ class Solution:
                 if not checkBoard(r,c):
                     return False
         return True
-
         
