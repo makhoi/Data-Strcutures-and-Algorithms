@@ -6,14 +6,10 @@ class NumArray:
         for i in range(1, len(nums)):
             prefix_sum[i] = prefix_sum[i-1] + nums[i]
         self.prefix_sum = prefix_sum
-        
 
     def sumRange(self, left: int, right: int) -> int:
         ps = self.prefix_sum
-        if left == 0:
-            return ps[right]
-        else:
-            return ps[right] - ps[left-1]
+        return ps[right] - (ps[left-1] if left else 0)
         
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
