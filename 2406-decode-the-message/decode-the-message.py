@@ -1,24 +1,30 @@
 class Solution:
     def decodeMessage(self, key: str, message: str) -> str:
-        # ENCODE
-        chars_map = {}
-        alphabet_letter = ord('a')
-
-        for c in key: 
-            if c == " ":
+        # process given message to character seperated by , and no duplicate 
+        key_no_duplicate = []
+        for ch in key: 
+            if ch == " ":
                 continue
-
-            if c not in chars_map: 
-                chars_map[c] = chr(alphabet_letter)
-                alphabet_letter += 1
-
-        # DECODE
-        result = []
-
-        for c in message:
-            if c == " ":
-                result.append(c)
+            if ch in key_no_duplicate:
+                continue
+            key_no_duplicate.append(ch)
+        
+        # map each character to alphabet letter
+        alphabet_map = {}
+        alphabet = ord('a')
+        for ch in key_no_duplicate:
+            alphabet_map[ch] = chr(alphabet)
+            alphabet += 1 
+        
+        # decode message
+        decode_message = []
+        for ch in message: 
+            if ch == " ":
+                decode_message.append(" ")
             else: 
-                result.append(chars_map[c])
-                
-        return "".join(result)
+                decode_message.append(alphabet_map[ch])
+        
+        return "".join(decode_message)
+
+
+            
