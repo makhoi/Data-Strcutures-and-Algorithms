@@ -1,11 +1,9 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        routes = {}
+        arrivals = {}
+        for cityA, cityB in paths: 
+            arrivals[cityA] = cityB
 
-        for cityA, cityB in paths:
-            routes[cityA] = cityB
-
-        for arrival in routes.values():
-            if arrival not in routes:
+        for arrival in arrivals.values():
+            if arrival not in arrivals:
                 return arrival
-        
