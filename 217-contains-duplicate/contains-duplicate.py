@@ -3,9 +3,8 @@ class Solution:
         occurences = {}
         for num in nums:
             occurences[num] = occurences.get(num, 0) + 1
-
-        for occurence in occurences.values(): 
-            if occurence >= 2:
+        
+        for val in occurences.values():
+            if val >= 2:
                 return True
         return False
-        
