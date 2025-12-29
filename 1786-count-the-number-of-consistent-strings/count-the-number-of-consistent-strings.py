@@ -1,13 +1,14 @@
 class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
-        count = 0
+        allowed_character = set()
+        for ch in allowed: 
+            allowed_character.add(ch)
+
+        count = len(words)
 
         for word in words: 
-            if set(word) <= set(allowed):
-                count += 1
-        
+            for ch in word: 
+                if ch not in allowed_character:
+                    count -= 1
+                    break
         return count
-        
-# <= does not mean “smaller size”
-# It means set inclusion
-# Order, size, lexicographic value are irrelevant
