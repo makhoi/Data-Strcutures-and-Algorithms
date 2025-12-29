@@ -1,9 +1,7 @@
 class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
-        allowed_character = set()
-        for ch in allowed: 
-            allowed_character.add(ch)
-
+        allowed_character = set(allowed)
+        
         count = len(words)
 
         for word in words: 
