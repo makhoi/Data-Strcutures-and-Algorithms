@@ -11,6 +11,7 @@ class NumArray:
         ps = self.prefix_sum
         return ps[right] - (ps[left-1] if left else 0)
         
+
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
 # param_1 = obj.sumRange(left,right)
