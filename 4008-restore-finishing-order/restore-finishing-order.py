@@ -1,15 +1,12 @@
 class Solution:
     def recoverOrder(self, order: List[int], friends: List[int]) -> List[int]:
-        '''
-        Determine missing values from friend array to order 
-        Remove that missing values from order array -> we got the result
-        '''
+        friends_set = set(friends)
         missing = []
-        for o in order:
-            if o not in friends: 
-                missing.append(o)
-
-        for m in missing:
-            order.remove(m)
-            
+        for n in order: 
+            if n not in friends_set:
+                missing.append(n)
+        
+        for n in missing:
+            order.remove(n)
+        
         return order
