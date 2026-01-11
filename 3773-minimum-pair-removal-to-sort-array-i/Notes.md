@@ -1,1 +1,1 @@
-<h2>minimum-pair-removal-to-sort-array-i Notes</h2><hr>[ Time taken: 17 m 31 s ]
+<h2>minimum-pair-removal-to-sort-array-i Notes</h2><hr>[ Time taken: 28 m 54 s ]
