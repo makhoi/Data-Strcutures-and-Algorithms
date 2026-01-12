@@ -6,7 +6,7 @@ class Solution:
 
         sum = 0
         for num in nums:
-            if frequency[num] % k == 0: 
+            if frequency[num] % k == 0:
                 sum += num
-
+        
         return sum
