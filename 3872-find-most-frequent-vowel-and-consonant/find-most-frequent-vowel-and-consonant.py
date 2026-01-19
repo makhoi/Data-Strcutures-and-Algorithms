@@ -12,15 +12,8 @@ class Solution:
             if ch not in vowels:
                 consonant_frequency[ch] = consonant_frequency.get(ch, 0) + 1
 
-        best_vowel_frequency = 0
-        for _ in vowel_frequency:
-            best_vowel = max(vowel_frequency, key=vowel_frequency.get) # find best key from vowel_frequency table
-            best_vowel_frequency = vowel_frequency[best_vowel] # find best value
-
-        best_consonant_frequency = 0
-        for _ in consonant_frequency:
-            best_consonant = max(consonant_frequency, key=consonant_frequency.get) 
-            best_consonant_frequency = consonant_frequency[best_consonant]
+        best_vowel_frequency = max(vowel_frequency.values()) if vowel_frequency else 0
+        best_consonant_frequency = max(consonant_frequency.values()) if consonant_frequency else 0
 
         result = best_vowel_frequency + best_consonant_frequency
 
