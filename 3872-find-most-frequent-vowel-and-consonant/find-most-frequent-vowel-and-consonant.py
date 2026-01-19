@@ -13,4 +13,4 @@ class Solution:
         best_vowel_frequency = max(vowel_frequency.values()) if vowel_frequency else 0
         best_consonant_frequency = max(consonant_frequency.values()) if consonant_frequency else 0
 
-        return best_vowel_frequency + best_consonant_frequency
+        return best_vowel_frequency + best_consonant_frequency 
