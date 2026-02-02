@@ -1,11 +1,5 @@
 class Solution:
     def getFinalState(self, nums: List[int], k: int, multiplier: int) -> List[int]:
-        '''
-        1. first determine the smallest value in the array and also keep track of the index 
-        2. replace that value with value*multplier
-        3. reduce k by 1
-        '''
-        # determine the smallest value in the array
         while k:
             smallest_value = float('inf')
             smallest_value_index = 0
