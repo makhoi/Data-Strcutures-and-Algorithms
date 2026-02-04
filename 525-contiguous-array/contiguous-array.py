@@ -1,8 +1,5 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        '''
-        Lets say we have an array of -1s and 1s -> ps[j,i] = -1s + 1s = 0 -> đưa về dạng j,i có tổng k = 0
-        '''
         n = len(nums)
 
         for i in range(n):
@@ -12,7 +9,6 @@ class Solution:
         max_length = 0
         prefix_map = {}
         prefix_sum = 0
-        # k = 0
 
         for i in range(n):
             prefix_sum += nums[i]
