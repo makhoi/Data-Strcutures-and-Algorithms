@@ -1,16 +1,21 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
+        '''
+        Method 2: Convert 0 to -1 
+
+        ps[i] = S
+        ps[j,i] = k = 0
+        ps[j-1] = S - k = S - 0 = S
+        '''
+        prefix_sum = 0
+        prefix_map = {}
         n = len(nums)
+        max_length = 0
 
         for i in range(n):
             if nums[i] == 0:
                 nums[i] = -1
-
-        max_length = 0
-        prefix_map = {}
-        prefix_sum = 0
-
-        for i in range(n):
+            
             prefix_sum += nums[i]
 
             if prefix_sum == 0:
