@@ -1,20 +1,18 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        '''
-        find longest substring with 2 distinct number 
-        '''
-        l = 0
+        l = 0 
         res = 0
-        number_frequency = {}
+        count = {}
 
         for r in range(len(fruits)):
-            number_frequency[fruits[r]] = number_frequency.get(fruits[r], 0) + 1
+            count[fruits[r]] = count.get(fruits[r], 0) + 1
 
-            while len(number_frequency) == 3:
-                number_frequency[fruits[l]] -= 1
-                if number_frequency[fruits[l]] == 0:
-                    del number_frequency[fruits[l]]
+            while len(count) > 2:
+                count[fruits[l]] -= 1
+                if count[fruits[l]] == 0:
+                    del count[fruits[l]]
                 l += 1
+
             res = max(res, r - l + 1)
-        
-        return res 
+
+        return res
