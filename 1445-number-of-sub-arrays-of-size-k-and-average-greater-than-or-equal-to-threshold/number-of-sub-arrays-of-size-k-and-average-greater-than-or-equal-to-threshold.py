@@ -1,18 +1,5 @@
 class Solution:
     def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
-        '''
-        1. Find all subarray with length k -> n
-        2. Among n, find one with average >= threshold
-
-        or
-
-        1. Find all subarray with length k -> n
-        2. Among n, find one with average < threshold -> m
-        3. return n - m 
-
-        r starts at index k - 1
-
-        '''
         l = 0
         count = 0
         average = 0
