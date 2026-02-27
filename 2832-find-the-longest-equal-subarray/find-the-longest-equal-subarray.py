@@ -1,3 +1,6 @@
+# Time: O(n)
+# Sliding Window type 1
+# Optimization from first attempt: update max frequency every time added a new nums[r] -> avoid max(dict) -> O(n^2) to O(n)
 class Solution:
     def longestEqualSubarray(self, nums: List[int], k: int) -> int:
         l = 0
