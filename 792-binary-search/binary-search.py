@@ -4,10 +4,10 @@ class Solution:
         end_index = len(nums) - 1
 
         while begin_index <= end_index: 
-            midpoint = begin_index + (end_index - begin_index) // 2
+            midpoint = (begin_index + end_index) // 2 # / là chia số real , // là chia số nguyên
             midpoint_value = nums[midpoint]
 
-            if midpoint_value == target: 
+            if target == midpoint_value:
                 return midpoint
             
             elif target < midpoint_value:
@@ -15,5 +15,4 @@ class Solution:
 
             else: 
                 begin_index = midpoint + 1
-
         return -1
