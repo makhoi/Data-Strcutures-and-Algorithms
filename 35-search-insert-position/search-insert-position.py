@@ -1,26 +1,22 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         '''
-        # 1. define search space (left, right)
-        0 -> n
-        # 2. define contidion(mid)
-        # if nums[mid] >= target: 
-            r = mid 
-        # 3. define left meaning after while loop
-        # nums[left] >= target and left is minimum
+        0. Binary search? Yes
+        1. lowerbound vs upperbound? no dup -> lowerbound
+        2. search space: 0 -> n
+        3. condition: if nums[mid] >= target 
+        4. meaning: min l satisfies condition
+        5. result: l
         '''
         n = len(nums)
         l = 0
-        # r = n - 1
-        r = n # test case phải cover tất cả trường hợp --> 0 -> n -> r = n
+        r = n
 
         while l < r: 
-            mid = l + (r-l) // 2 # lowerbound 
+            m = l + (r-l)//2
 
-            if nums[mid] >= target:
-                r = mid
-            
+            if nums[m] >= target: 
+                r = m
             else: 
-                l = mid + 1
-
+                l = m + 1
         return l
