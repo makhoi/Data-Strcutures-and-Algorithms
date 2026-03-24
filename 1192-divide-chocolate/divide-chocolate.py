@@ -13,7 +13,7 @@ class Solution:
         l , r = min(sweetness), sum(sweetness) // (k + 1)
 
         while l < r:
-            m = (r + l + 1) // 2
+            m = r - (r-l)//2
             if isCuttable(m):
                 l = m 
             else:
