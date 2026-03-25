@@ -1,44 +1,51 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         '''
-        1. lowerbound vs upperbound: no dup -> lowerbound preferred
-        2. search space: 0 -> n-1
-        3. condition to move right: if nums[m] < nums[r]
-        4. meaning of left after exiting the while loop: min l satisfies the condition
-        5. result: if nums[l] == target -> return nums[l] else -1
+        After being rotated, the array can be divided into 2 parts:
+        - half left: left pointer -> index of max(nums)
+        - right pointer: index of min(nums) -> right pointer 
+        Then we can conduct search separately depends on where the target lies in
+
+        TODO: 
+        1. Find where the index of min(nums) is (refer to find minimum in rotated sorted array leetcode problem above)
+        2. Write a binary search function taking 3 parameters (left, right, target) 
+        3. Conduct binary search depends where the target is
         '''
-        # find minimum in rotated sorted array
+
+        '''
+        lowerbound vs upperbound: 
+        search space: index 0 -> n-1
+
+        '''
+
+        # find the index of the minimum element in rotated sorted array 
         n = len(nums)
-        l = 0
-        r = n-1
+        left = 0
+        right = n - 1
 
-        while l < r: 
-            m = l + (r-l)//2
+        while left < right: # why are we using lowerbound here 
+            mid = left + (right - left)//2
 
-            if nums[m] <= nums[r]: # midpoint belongs to the half right 
-                r = m
+            if nums[mid] <= nums[right]:
+                right = mid
             else: 
-                l = m + 1
-        
-        minIndex = l # index of min value
+                left = mid + 1
 
-        # the array is divided into 2 parts: 
-        # right part: from minIndex -> n-1
-        # left part: from 0 -> minIndex-1
+        minIndex = left
 
-        def binarySearch(left, right, find): 
+        # write binary search function 
+        def binarySearch(start, end, find):
+            while start < end: 
+                midpoint = start + (end - start)//2
 
-            while left < right: 
-                mid = left + (right-left)//2
+                if find <= nums[midpoint]:
+                    end = midpoint
+                else:
+                    start = midpoint + 1
+            return start if nums[start] == target else -1
 
-                if nums[mid] >= find:
-                    right = mid
-                else: 
-                    left = mid + 1
-
-            return left if nums[left] == target else -1
-
-        if target <= nums[n-1]:
+        # conduct binary search depends on which half it belongs to
+        if target <= nums[n-1]: # target lies on right half
             return binarySearch(minIndex, n-1, target)
-        else: 
-            return binarySearch(0, minIndex-1, target)
+        else:
+            return binarySearch(0,minIndex-1,target)
