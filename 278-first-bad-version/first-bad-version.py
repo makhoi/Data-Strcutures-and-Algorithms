@@ -4,27 +4,27 @@
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         '''
-        0. basic/modified/adhoc: 
-        - modified: array tăng dần và bị biến đổi ở đâu đó
-        - adhoc: phải biến đổi đề thành array () 
-        => Biến đổi thành GGGGBBBB -> FFFFTTTT 
-        => adhoc
-        1. lowerbound vs upperbound: lowerbound but why? there is duplicate 
-        2. search space: 1 -> n
-        3. condition to move right: isBadVersion(m) -> True 
-        4. meaning of left: the first version that isBadVersion(m) returns True 
-        5. result: returns l
+        TTTTTTFFFFFFFFF
+        l      m      r
         '''
-        l = 1
-        r = n
 
-        while l < r: 
-            m = l + (r-l)//2
+        '''
+        0. basic/modified/adhoc: can be turn into array with Ts and Fs -> adhoc 
+        1. lowerbound vs upperbound: find first F -> first appearance of target -> lowerbound
+        2. search space: version 1 -> n
+        3. condition to move right: if isBadVersion(mid) == F
+        4. meaning of left: min left satisfies the condition
+        5. return left
+        '''
 
-            if isBadVersion(m) == True:
-                r = m
+        left = 1
+        right = n
+
+        while left < right: 
+            mid = left + (right - left)//2
+
+            if isBadVersion(mid) == True: 
+                right = mid
             else: 
-                l = m + 1
-        
-        return l
-        
+                left = mid + 1
+        return left
