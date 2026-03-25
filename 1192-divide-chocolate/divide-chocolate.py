@@ -25,7 +25,7 @@ class Solution:
                 if current_sweet >= minSweetness:
                     split_count += 1
                     current_sweet = 0
-            return split_count >= k + 1 # why >= but not = ? we want to split into exact k + 1 pieces right? 
+            return split_count >= k + 1 
         
         left = min(sweetness)
         right = sum(sweetness)//(k+1)
