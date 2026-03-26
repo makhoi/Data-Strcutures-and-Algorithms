@@ -16,7 +16,7 @@ class Solution:
 
         '''
         1. adhoc: FFFFFTTTTT -> find the first capacity that makes function can_ship()returns T -> find first T
-        2. lowerbound vs upperbound: find first T -> lowerbound
+        2. lowerbound vs upperbound: find first T -> first appearance of target ->lowerbound
         3. search space: 
         - left: max(weights) -> cannot split a package
         - right: sum(weights) -> ship all packages within 1 day
