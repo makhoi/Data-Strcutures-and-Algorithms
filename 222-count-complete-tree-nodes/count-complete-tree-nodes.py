@@ -10,8 +10,7 @@ class Solution:
             dfs(node.left)
             dfs(node.right)
 
-            return
+            return 
         
         dfs(root)
-
         return len(res)
