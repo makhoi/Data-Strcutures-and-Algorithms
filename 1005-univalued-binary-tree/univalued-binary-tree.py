@@ -1,15 +1,16 @@
 class Solution:
     def isUnivalTree(self, root: Optional[TreeNode]) -> bool:
-        if root is None: 
-            return True
-        
-        leftEval = self.isUnivalTree(root.left)
-        rightEval = self.isUnivalTree(root.right)
-        
-        if root.left and root.val != root.left.val:
-            return False
+        res = set()
 
-        if root.right and root.val != root.right.val:
-            return False
+        def dfs(node):
+            if not node:
+                return 
+            
+            res.add(node.val)
+            dfs(node.left)
+            dfs(node.right)
 
-        return leftEval and rightEval
+            return
+
+        dfs(root)
+        return len(res) == 1
