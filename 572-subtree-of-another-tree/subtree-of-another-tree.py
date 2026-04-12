@@ -1,6 +1,6 @@
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        # perform inorder traversal on both tree first
+        # perform postorder traversal on both tree first
         def dfs(node, arr):
             if not node:
                 arr.append(None)
