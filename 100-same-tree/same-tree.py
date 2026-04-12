@@ -1,20 +1,12 @@
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
 
-        def dfs(node, res):
-            if not node:
-                res.append(None)
-            else:
-                res.append(node.val)
-                dfs(node.left, res)
-                dfs(node.right, res)
+        if not p or not q or p.val != q.val:
+            return False
+        
+        leftEval = self.isSameTree(p.left, q.left)
+        rightEval = self.isSameTree(p.right, q.right)
 
-            return 
-
-        res1 = []
-        dfs(p, res1)
-
-        res2 = []
-        dfs(q, res2)
-
-        return res1 == res2
+        return leftEval and rightEval
