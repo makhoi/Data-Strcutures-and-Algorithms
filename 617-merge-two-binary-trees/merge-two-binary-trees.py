@@ -1,12 +1,15 @@
+# in-place solution
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
         if root1 is None and root2 is None:
             return None
         
-        if root1 is None and root2:
+        # if root1 is None and root2:
+        if not root1:
             return root2
         
-        if root1 and root2 is None:
+        # if root1 and root2 is None:
+        if not root2:
             return root1
 
         if root1 and root2:
