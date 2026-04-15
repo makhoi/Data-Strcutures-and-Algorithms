@@ -1,16 +1,19 @@
 class Solution:
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
-        def dfs(o, c):
-            if not o:
+        
+        def dfs(node1, node2):
+            if not node1:
                 return None
+            
+            if node1 is target:
+                return node2
 
-            if o is target:
-                return c
+            leftEval = dfs(node1.left, node2.left)
+            rightEval = dfs(node1.right, node2.right)
 
-            left = dfs(o.left, c.left)
-            if left:
-                return left
-
-            return dfs(o.right, c.right)
+            if leftEval:
+                return leftEval
+            else:
+                return rightEval
 
         return dfs(original, cloned)
