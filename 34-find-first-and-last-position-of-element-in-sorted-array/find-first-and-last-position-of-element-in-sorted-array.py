@@ -1,66 +1,56 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         '''
-        0. Why binary search? 
-        Search space increase? index increase from 0->n-1 -> Yes
-        Continuous? yes 
+        1. Define approach:
+        - search space: index increases from 0 -> len(nums) - 1
+        - Consecutiveness
+        => Binary Search problem
 
-        1. Determine lowerbound vs upperbound? 
-        Dup + find last element -> upperbound
-        find first element -> lowerbound
+        2. Decide lowerbound vs upperbound: asking for both earlier appaearance and latter appearance 
+        => lowerbound and upperbound
 
-        2. Determine search space: 
-        0 -> n-1
+        3. Define search space: 
+        index 0 -> len(nums) - 1
 
-        3. Determine condition: 
-        a) lowerbound: 
-        if target <= nums[mid]: 
-        b) upperbound: 
-        if target >= nums[mid]
+        4. Define condition(mid): 
+        lowerbound: target <= nums[mid] -> right = mid
+        upperbound: target >= nums[mid] -> left = mid
 
-        4. Determine meaning of
-        a) lowerbound: left after exiting while loop 
-        min l satifies if target <= nums[mid]
-        b) upperbound: max after exiting while loop
-        max r satifies target >= nums[mid]
-
-        5. Determine result: 
-        return [left, right]
+        5. Define meaning of left and right:
+        left: min left satifies lowerbound condition
+        right: max right satisfies upperbound condition
         '''
+
         n = len(nums)
-        l = 0
-        r = n-1
+        left = 0
+        right = n - 1
 
-        # special case: empty nums
-        if len(nums) == 0:
-            return [-1, -1]
+        if n == 0:
+            return [-1,-1]
 
-        # lowerbound -> find first element 
-        while l < r:
-            m = l + (r-l) // 2
+        while left < right:
+            mid = left + (right - left) // 2
 
-            if target <= nums[m]:
-                r = m
-            else: 
-                l = m + 1
+            if target <= nums[mid]:
+                right = mid
+            else:
+                left = mid + 1
+
+        leftRes = left
+
+        left = 0
+        right = n - 1
+
+        while left < right:
+            mid = right - (right-left)//2
+
+            if target >= nums[mid]:
+                left = mid
+            else:
+                right = mid - 1
         
-        first_element = l
-
-        # upperbound -> find last element 
-        l = 0
-        r = n - 1
-
-        while l < r: 
-            m = r - (r-l)//2
-
-            if target >= nums[m]:
-                l = m
-            else: 
-                r = m-1
-        
-        last_element = r
-
-        if nums[first_element] == nums[last_element] == target: 
-            return [first_element, last_element]
+        # return [-1,-1] if nums[leftRes] != target and nums[right] != target else [leftRes, right]
+        if nums[leftRes] == target and nums[right] == target:
+            return [leftRes,right]
         else:
-            return [-1, -1]
+            return [-1,-1]
