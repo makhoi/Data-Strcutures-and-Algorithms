@@ -26,7 +26,7 @@ class Solution:
         right = n - 1
 
         if n == 0:
-            return [-1,-1]
+            return [-1, -1]
 
         while left < right:
             mid = left + (right - left) // 2
@@ -49,8 +49,4 @@ class Solution:
             else:
                 right = mid - 1
         
-        # return [-1,-1] if nums[leftRes] != target and nums[right] != target else [leftRes, right]
-        if nums[leftRes] == target and nums[right] == target:
-            return [leftRes,right]
-        else:
-            return [-1,-1]
+        return [-1,-1] if nums[leftRes] != target and nums[right] != target else [leftRes, right]
