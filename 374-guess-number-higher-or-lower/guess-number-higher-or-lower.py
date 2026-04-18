@@ -1,41 +1,14 @@
-# The guess API is already defined for you.
-# @param num, your guess
-# @return -1 if num is higher than the picked number
-#          1 if num is lower than the picked number
-#          otherwise return 0
-# def guess(num: int) -> int:
-
 class Solution:
     def guessNumber(self, n: int) -> int:
-        '''
-        0. Why is this binary search ? 
-        a/ Search space increasing? yes
-        b/ Continuous characteristic? yes
+        left = 1
+        right = n
 
-        1. Determine lowerbound / upperbound? 
-        no duplicate -> lowerbound
+        while left < right:
+            mid = left + (right-left)//2
 
-        2. Determine search space? 
-        index: 0 -> n
-
-        3. Determine condition (move right): 
-        if pick <= num
-
-        4. Determine meaning of left after while loop: 
-        min l satifies if pick <= num
-
-        5. Determine result
-        return pick
-        '''
-        l = 1
-        r = n
-
-        while l < r: 
-            m = l + (r-l)//2
-
-            if guess(m) <= 0:
-                r = m
+            if guess(mid) <= 0:
+                right = mid
             else:
-                l = m + 1
-                
-        return l
+                left = mid + 1
+
+        return left
