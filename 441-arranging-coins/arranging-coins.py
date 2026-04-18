@@ -3,12 +3,12 @@ class Solution:
         left = 1
         right = n
 
-        while left < right: 
-            mid = right - (right-left)//2
+        while left < right:
+            mid = left + (right - left + 1) // 2
 
-            if (mid/2)*(mid+1) <= n:
+            if (mid * (mid + 1)) // 2 <= n:
                 left = mid
             else:
                 right = mid - 1
 
-        return right
+        return left
