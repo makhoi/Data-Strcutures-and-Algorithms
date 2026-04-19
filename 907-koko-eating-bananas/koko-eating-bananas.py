@@ -1,11 +1,6 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        '''
-        define a function to return True if koko can eat all the piles within h hours
-                                    False if koko can not
-        calculate total hours koko eat with that speed
-        if total <= h: return true
-        '''
+
         def canEat(speed):
             total = 0
 
