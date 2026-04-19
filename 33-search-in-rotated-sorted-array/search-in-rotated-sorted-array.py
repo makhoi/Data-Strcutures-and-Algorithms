@@ -1,6 +1,14 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        # find index of the minimum element
+        '''
+        binary search: 
+        - Dạng tìm element - no dup - either upperbound or lowerbound is fine
+        - Modified binary search
+        lowerbound vs upperbound: lowerbound
+        search space: 0 -> n-1
+        condition to move right: if target <= nums[mid]
+        return nums[left] if nums[left] == target else -1
+        '''
         n = len(nums)
         left = 0
         right = n-1
@@ -10,24 +18,23 @@ class Solution:
 
             if nums[mid] <= nums[right]:
                 right = mid
-            else: 
+            else:
                 left = mid + 1
         
-        minIndex = left
+        index_min_value = left
 
-        # write binary search function 
-        def binarySearch(start, end, find): 
-            while start < end: 
-                midpoint = start + (end-start)//2
+        def binarySearch(start, end, find):
+            while start < end:
+                mid = start + (end-start)//2
 
-                if nums[midpoint] >= target: 
-                    end = midpoint
-                else: 
-                    start = midpoint + 1
-            return start if nums[start] == find else -1
+                if find <= nums[mid]:
+                    end = mid
+                else:
+                    start = mid + 1
 
-        # conduct binary search
-        if target <= nums[n-1]: 
-            return binarySearch(minIndex,n-1,target)
-        else: 
-            return binarySearch(0,minIndex-1,target)
+            return -1 if nums[start] != find else start
+
+        if target <= nums[n-1]:
+            return binarySearch(index_min_value, n-1, target)
+        else:
+            return binarySearch(0, index_min_value-1, target)
