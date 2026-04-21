@@ -7,18 +7,17 @@ class Solution:
             prefix_sum += weight
             self.prefix_sums.append(prefix_sum)
         self.total = prefix_sum
-
+        
     def pickIndex(self) -> int:
-        target = self.total * random.random()
-
+        target = self.total*random.random()
         n = len(self.prefix_sums)
         left = 0
-        right = n - 1
+        right = n-1
 
-        while left < right: 
-            mid = left + (right-left) // 2
+        while left < right:
+            mid = left + (right-left)//2
 
-            if target <= self.prefix_sums[mid]:
+            if target < self.prefix_sums[mid]:
                 right = mid
             else:
                 left = mid + 1
