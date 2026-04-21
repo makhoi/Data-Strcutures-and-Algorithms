@@ -18,7 +18,7 @@ class Solution:
         while left < right: 
             mid = left + (right-left) // 2
 
-            if target < self.prefix_sums[mid]:
+            if target <= self.prefix_sums[mid]:
                 right = mid
             else:
                 left = mid + 1
