@@ -4,7 +4,7 @@ class Solution:
         0. Define binarsy search type basic/modified/adhoc: adhoc
         1. Lowerbound vs Upperbound: apply the bool function returning T/F: it will be FFFFFTTTTTT -> Find the first T 
         --> lowerbound
-        2. Search space: min(nums), max(nums)
+        2. Search space: 1 , max(nums)
         3. Condition to move right: if function return True else move left to mid + 1
         4. Meaning of left: min left satisfies the condition
         5. Return left
