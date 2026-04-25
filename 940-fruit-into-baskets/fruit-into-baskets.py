@@ -1,18 +1,19 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        l = 0 
         res = 0
-        count = {}
+        integer_frequency = {}
+        left = 0
 
-        for r in range(len(fruits)):
-            count[fruits[r]] = count.get(fruits[r], 0) + 1
+        for right in range(len(fruits)):
 
-            while len(count) > 2:
-                count[fruits[l]] -= 1
-                if count[fruits[l]] == 0:
-                    del count[fruits[l]]
-                l += 1
+            while len(integer_frequency) == 2 and fruits[right] not in integer_frequency:
+                integer_frequency[fruits[left]] -= 1
+                if integer_frequency[fruits[left]] == 0:
+                    del integer_frequency[fruits[left]]
+                left += 1
+            
+            integer_frequency[fruits[right]] = integer_frequency.get(fruits[right], 0) + 1
 
-            res = max(res, r - l + 1)
+            res = max(res, right - left + 1)
 
         return res
