@@ -1,20 +1,17 @@
-# Sliding window type 1a 
-# Time: O(n)
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        l = 0
         res = 0
-        frequency = {}
+        character_frequency = {}
+        left = 0
 
-        for r in range(len(s)):
-            frequency[s[r]] = frequency.get(s[r], 0) + 1
+        for right in range(len(s)):
+            character_frequency[s[right]] = character_frequency.get(s[right], 0) + 1
+            max_character = max(character_frequency, key = character_frequency.get)
+            max_count = character_frequency[max_character]
 
-            while (r-l+1) - max(frequency.values()) > k: 
-                frequency[s[l]] -= 1
-                if frequency[s[l]] == 0:
-                    del frequency[s[l]]
-                l += 1
+            while (right - left + 1) - max_count > k:
+                character_frequency[s[left]] -= 1
+                left += 1
+            res = max(res, right - left + 1)
 
-            res = max(res, r - l + 1)
-        
         return res
