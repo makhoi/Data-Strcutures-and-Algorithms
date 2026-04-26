@@ -1,32 +1,19 @@
 class Solution:
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
-        # convert odd -> 1 and even -> 0
-        for i in range(len(nums)):
-            if nums[i] % 2 == 1:
-                nums[i] = 1
-            else:
-                nums[i] = 0
-        
-        '''
-        ps[j,i] = k
-        ps[i] = S
-        ps[j-1] = S - k
-        '''
+        def atMost(h):
+            res = 0
+            odd_count = 0
+            left = 0
 
-        s = 0
-        prefixMap = {}
-        count = 0
-        n = len(nums)
+            for right in range(len(nums)):
+                odd_count += 1 if nums[right] % 2 == 1 else 0
 
-        for i in range(n):
-            s += nums[i]
-
-            if s == k:
-                count += 1
-
-            if s - k in prefixMap:
-                count += prefixMap[s - k]
-
-            prefixMap[s] = prefixMap.get(s, 0) + 1
-
-        return count
+                while odd_count > h:
+                    odd_count -= 1 if nums[left] % 2 == 1 else 0
+                    left += 1
+                
+                res += right - left + 1
+            
+            return res
+            
+        return atMost(k) - atMost(k-1)
