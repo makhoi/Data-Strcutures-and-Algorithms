@@ -1,10 +1,8 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        occurences = {}
+        integer_frequency = {}
         for num in nums:
-            occurences[num] = occurences.get(num, 0) + 1
-        
-        for val in occurences.values():
-            if val >= 2:
+            integer_frequency[num] = integer_frequency.get(num, 0) + 1
+            if integer_frequency[num] == 2:
                 return True
         return False
