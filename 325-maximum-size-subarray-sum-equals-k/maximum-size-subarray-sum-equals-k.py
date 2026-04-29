@@ -1,23 +1,23 @@
 class Solution:
     def maxSubArrayLen(self, nums: List[int], k: int) -> int:
-        max_length = 0
-        prefix_map = {}
-        prefix_sum = 0
+        res = 0
+        prefix_index = {}
+        sum = 0
+        jM1 = 0
 
         for i in range(len(nums)):
-            prefix_sum += nums[i]
+            sum += nums[i]
 
-            if prefix_sum == k:
-                max_length = max(max_length, i + 1)
+            if sum == k:
+                res = max(res, i + 1)
 
-            if prefix_sum - k in prefix_map:
-                jM1 = prefix_map[prefix_sum - k]
+            if sum - k in prefix_index:
+                jM1 = prefix_index[sum-k]
                 j = jM1 + 1
-                l = i - j + 1
+                length = i - j + 1
+                res = max(res, length)
 
-                max_length = max(max_length, l)
-
-            if prefix_sum not in prefix_map: 
-                prefix_map[prefix_sum] = i
-
-        return max_length
+            if sum not in prefix_index:
+                prefix_index[sum] = i
+            
+        return res
