@@ -1,22 +1,18 @@
 class Solution:
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        '''
-        find longest subarray with no more than 1 zero
-        -> condition to stop expanding the window: frequency of 0 == 2
-        '''
         res = 0
-        num0 = 0
-        left = 0 
-
+        number_frequency = {}
+        left = 0
+        
         for right in range(len(nums)):
-            if nums[right] == 0:
-                num0 += 1
+            number_frequency[nums[right]] = number_frequency.get(nums[right], 0) + 1
 
-            while num0 == 2:
-                if nums[left] == 0:
-                    num0 -= 1
+            while number_frequency.get(0,0) == 2:
+                number_frequency[nums[left]] -= 1
+                if number_frequency[nums[left]] == 0:
+                    del number_frequency[nums[left]]
                 left += 1
-            
+
             res = max(res, right - left + 1)
 
         return res
