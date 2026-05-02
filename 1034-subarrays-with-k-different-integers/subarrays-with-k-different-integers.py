@@ -7,12 +7,15 @@ class Solution:
 
             for right in range(len(nums)):
                 number_frequency[nums[right]] = number_frequency.get(nums[right], 0) + 1
+                num_count = len(number_frequency)
 
                 while len(number_frequency) > h:
                     number_frequency[nums[left]] -= 1
                     if number_frequency[nums[left]] == 0:
                         del number_frequency[nums[left]]
+                        num_count -= 1
                     left += 1
+
                 count += right - left + 1
 
             return count
