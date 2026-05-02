@@ -7,17 +7,17 @@ class Solution:
             for c in range(COLS):
                 if matrix[rowIndex][c] != 0:
                     matrix[rowIndex][c] = float('inf')
-        
-        def setColumn(colIndex):
+
+        def setCol(colIndex):
             for r in range(ROWS):
                 if matrix[r][colIndex] != 0:
                     matrix[r][colIndex] = float('inf')
-        
+
         for r in range(ROWS):
             for c in range(COLS):
                 if matrix[r][c] == 0:
                     setRow(r)
-                    setColumn(c)
+                    setCol(c)
         
         for r in range(ROWS):
             for c in range(COLS):
