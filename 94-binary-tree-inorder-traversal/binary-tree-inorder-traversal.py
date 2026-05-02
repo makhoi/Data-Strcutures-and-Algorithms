@@ -11,11 +11,11 @@ class Solution:
         def dfs(node):
             if not node:
                 return None
+
             dfs(node.left)
             res.append(node.val)
             dfs(node.right)
 
-            return None
         dfs(root)
 
         return res
