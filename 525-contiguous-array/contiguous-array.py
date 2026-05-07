@@ -1,35 +1,34 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         '''
-        When 1s = 0s -> 1s - 0s = 0 -> diff = 0 -> d = 0
-        ps[i] = S
-        ps[j,i] = d = 0
-        ps[j-1] = S - d = S - 0 = S
+        Convert every 0s to -1s
+        length 0s = length 1s <=> length -1s = length 1s <=> total = 0
+        ps[i] = s
+        ps[j...i] = 0
+        ps[j-1] = s - 0 = s
         '''
-        prefix_sum = 0
-        prefix_map = {}
-        max_length = 0
         n = len(nums)
-        diff = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                nums[i] = -1
+        
+        res = 0
+        jM1 = 0
+        s = 0
+        s_index = {}
 
         for i in range(n):
-            # prefix_sum += nums[i]
+            s += nums[i]
 
-            if nums[i] == 1:
-                diff += 1
-            else:
-                diff -= 1
+            if s == 0:
+                res = max(res, i + 1)
 
-            if diff == 0:
-                max_length = max(max_length, i + 1)
-
-            if diff in prefix_map:
-                jM1 = prefix_map[diff]
+            if s in s_index:
+                jM1 = s_index[s]
                 j = jM1 + 1
-                l = i - j + 1
-                max_length = max(max_length, l)
+                res = max(res, i - j + 1)
 
-            if diff not in prefix_map:
-                prefix_map[diff] = i
+            if s not in s_index:
+                s_index[s] = i
 
-        return max_length
+        return res
