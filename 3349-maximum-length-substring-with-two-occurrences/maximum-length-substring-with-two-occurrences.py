@@ -1,9 +1,5 @@
 class Solution:
     def maximumLengthSubstring(self, s: str) -> int:
-        '''
-        condition to stop the expansion: 
-        if any character_frequency value > 2 -> shrink the window
-        '''
         res = 0
         left = 0
         character_frequency = {}
