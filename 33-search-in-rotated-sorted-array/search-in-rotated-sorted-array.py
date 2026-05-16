@@ -1,7 +1,6 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-            
-        # first find index of min value
+        # find minimum value
         n = len(nums)
         left = 0
         right = n - 1
@@ -9,25 +8,28 @@ class Solution:
         while left < right:
             mid = left + (right - left) // 2
 
-            if nums[mid] <= nums[right]:
+            if nums[mid] <= nums[n-1]:
                 right = mid
             else:
                 left = mid + 1
         
-        minIndex = left
+        min_index = left
 
         # define binary search function
-        def binarySearch(start, end, find):
+        def binarySearch(start, end):
             while start < end:
-                middle = start + (end-start)//2
+                mid = start + (end - start) // 2
 
-                if find <= nums[middle]:
-                    end = middle
+                if nums[mid] >= target:
+                    end = mid
                 else:
-                    start = middle + 1
-            return start if nums[start] == find else -1
+                    start = mid + 1
+            return start if nums[start] == target else -1
 
+        # conduct binary search on each half
         if target <= nums[n-1]:
-            return binarySearch(minIndex, n-1, target)
+            return binarySearch(min_index, n-1)
         else:
-            return binarySearch(0, minIndex-1, target)
+            return binarySearch(0,min_index-1)
+
+           
