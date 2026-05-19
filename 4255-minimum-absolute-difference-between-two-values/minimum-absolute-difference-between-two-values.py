@@ -1,27 +1,17 @@
 class Solution:
     def minAbsoluteDifference(self, nums: list[int]) -> int:
-        n = len(nums)
-
-        min_pair = float('inf')
-
-        for i in range(n):
-            if nums[i] != 1:
-                continue
-            for j in range(i+1, n):
-                if nums[j] != 2: 
-                    continue
-                if nums[i] == 1 and nums[j] == 2:
-                    if abs(i-j) < min_pair:
-                        min_pair = abs(i-j)
+        idx1 = -1
+        idx2 = -1
+        res = float('inf')
         
-        for i in range(n-1,-1,-1):
-            if nums[i] != 1:
-                continue
-            for j in range(i-1, -1, -1):
-                if nums[j] != 2:
-                    continue
-                if nums[i] == 1 and nums[j] == 2:
-                    if abs(i-j) < min_pair:
-                        min_pair = abs(i-j)
-
-        return min_pair if min_pair != float('inf') else -1
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                idx1 = i
+                if idx2 != -1:
+                    res = min(abs(idx1-idx2), res)
+            elif nums[i] == 2:
+                idx2 = i
+                if idx1 != -1:
+                    res = min(abs(idx1-idx2), res)
+        return -1 if res == float('inf') else res
+                
