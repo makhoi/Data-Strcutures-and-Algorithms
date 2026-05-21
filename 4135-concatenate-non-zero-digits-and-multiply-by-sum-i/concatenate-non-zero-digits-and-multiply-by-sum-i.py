@@ -8,9 +8,12 @@ class Solution:
         non_zeros = []
         for num in number:
             if num != '0':
-                non_zeros.append(int(num))
+                non_zeros.append(num)
 
-        x = int("".join(map(str, non_zeros)))
-        s = sum(non_zeros)
+        x = int("".join(non_zeros))
+        
+        s = 0
+        for num in non_zeros:
+            s += int(num)
 
         return x*s
