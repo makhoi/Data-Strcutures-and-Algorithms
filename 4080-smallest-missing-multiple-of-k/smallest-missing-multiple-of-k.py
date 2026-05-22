@@ -1,8 +1,8 @@
 class Solution:
     def missingMultiple(self, nums: List[int], k: int) -> int:
-        nums_set = set(nums)
+        nums = set(nums)
 
         current = k
-        while current in nums_set:
+        while current in nums:
             current += k
         return current
