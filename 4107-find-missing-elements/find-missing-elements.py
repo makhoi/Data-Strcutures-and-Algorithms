@@ -1,11 +1,6 @@
 class Solution:
     def findMissingElements(self, nums: List[int]) -> List[int]:
-        smallest = min(nums)
-        largest = max(nums)
-
-        full = []
-        for i in range(smallest, largest + 1):
-            full.append(i)
+        full = list(range(min(nums), max(nums) + 1))
         
         res = []
         for num in full:
