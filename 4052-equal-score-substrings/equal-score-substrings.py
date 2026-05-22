@@ -1,18 +1,12 @@
 class Solution:
     def scoreBalance(self, s: str) -> bool:
-        letter_value = {chr(ord('a') + i): i + 1 for i in range(26)}
+        total = sum(ord(char) - ord('a') + 1 for char in s)
 
-        n = len(s)
-        prefix_sum = [0]*n
-        prefix_sum[0] = letter_value[s[0]]
-        for i in range(1, n):
-            prefix_sum[i] = prefix_sum[i-1] + letter_value[s[i]]
+        left_sum = 0
+        for char in s:
+            left_sum += ord(char) - ord('a') + 1
+            right_sum = total - left_sum
 
-        def sumRange(start, end):
-            return prefix_sum[end] - (prefix_sum[start - 1] if start else 0)
-
-        for i in range(n):
-            if sumRange(0,i) == sumRange(i+1,n-1):
+            if right_sum == left_sum:
                 return True
-
         return False
