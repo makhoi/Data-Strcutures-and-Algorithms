@@ -1,12 +1,17 @@
 class Solution:
     def sumDivisibleByK(self, nums: List[int], k: int) -> int:
-        frequency = {}
-        for num in nums: 
-            frequency[num] = frequency.get(num, 0) + 1
 
-        sum = 0
+        num_frequency = {}
         for num in nums:
-            if frequency[num] % k == 0:
-                sum += num
+            num_frequency[num] = num_frequency.get(num, 0) + 1
+
+        frequency_divisible_k = []
+        for num, frequency in num_frequency.items():
+            if frequency % k == 0:
+                frequency_divisible_k.append(num)
+
+        res = 0
+        for num in frequency_divisible_k:
+            res += num*num_frequency[num]
         
-        return sum
+        return res
