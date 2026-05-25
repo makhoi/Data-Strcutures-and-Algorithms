@@ -1,13 +1,12 @@
 class Solution:
     def maxKDistinct(self, nums: List[int], k: int) -> List[int]:
-        nums = sorted(nums)
+        nums = sorted(set(nums), reverse = True)
 
-        k_largest = []
-        for i in range(len(nums) - 1, -1, -1):
-            if nums[i] not in k_largest:
-                k_largest.append(nums[i])
-                k -= 1
-            if k == 0:
-                break
+        if k > len(nums):
+            return nums
+            
+        res = []
+        for i in range(k):
+            res.append(nums[i])
         
-        return k_largest
+        return res
