@@ -1,19 +1,19 @@
 class Solution:
     def checkPrimeFrequency(self, nums: List[int]) -> bool:
-        num_to_frequency = {}
+        def is_prime(x):
+            if x < 2:
+                return False
+            for i in range(2, int(x**0.5) + 1):
+                if x % i == 0:
+                    return False
+            return True
+
+        number_frequency = {}
         for num in nums:
-            num_to_frequency[num] = num_to_frequency.get(num, 0) + 1
+            number_frequency[num] = number_frequency.get(num, 0) + 1
 
-        for frequency in num_to_frequency.values():
-            if frequency == 1:
-                continue
-
-            is_prime = True
-            for i in range(2, int(frequency**0.5)+1):
-                if frequency % i == 0:
-                    is_prime = False
-                    break
-            if is_prime == True:
+        for frequency in number_frequency.values():
+            if is_prime(frequency):
                 return True
-
+        
         return False
