@@ -1,9 +1,8 @@
 class Solution:
     def maxProduct(self, n: int) -> int:
-        number = str(n)
-        products = []
-        for i in range(len(number)):
-            for j in range(i+1, len(number)):
-                products.append(int(number[i]) * int(number[j]))
-
-        return max(products)
+        digit=[]
+        while n>0:
+            digit.append(n%10)
+            n//=10
+        digit.sort()
+        return digit[-1]*digit[-2]
