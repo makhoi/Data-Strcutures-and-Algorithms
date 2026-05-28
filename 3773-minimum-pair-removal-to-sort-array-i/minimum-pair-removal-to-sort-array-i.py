@@ -3,17 +3,16 @@ class Solution:
         count = 0
 
         while nums != sorted(nums):
-            min_sum = float('inf')
-            curr_sum = 0
-            startIndex = 0
-            for i in range(len(nums) - 1):
-                curr_sum = nums[i] + nums[i+1]
-                if curr_sum < min_sum:
-                    min_sum = curr_sum
-                    startIndex = i
-
-            nums[startIndex] = min_sum
-            nums.pop(startIndex + 1)
+            smallest_pair = float('inf')
+            smallest_index = -1
+            for i in range(len(nums)-1):
+                current_pair = nums[i] + nums[i+1]
+                if current_pair < smallest_pair:
+                    smallest_pair = current_pair
+                    smallest_index = i
+            
+            nums[smallest_index] = smallest_pair
+            nums.pop(smallest_index + 1)
             count += 1
-        
+
         return count
