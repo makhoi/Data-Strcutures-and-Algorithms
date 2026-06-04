@@ -1,10 +1,12 @@
 class Solution:
     def transformArray(self, nums: List[int]) -> List[int]:
-        ans = []
+        odd_count = 0
+        even_count = 0
+
         for num in nums:
             if num % 2 == 0:
-                ans.append(0)
+                even_count += 1
             else:
-                ans.append(1)
+                odd_count += 1
 
-        return sorted(ans)
+        return [0]*even_count + [1]*odd_count
