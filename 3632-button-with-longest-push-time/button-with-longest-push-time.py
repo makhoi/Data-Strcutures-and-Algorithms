@@ -9,10 +9,12 @@ class Solution:
         
         for i in range(1, len(events)):
             push_time = events[i][1] - events[i-1][1]
+
             if push_time > longest_time:
                 longest_time = push_time
                 res = events[i][0]
-            elif push_time == longest_time and events[i][0] < res:
+
+            if push_time == longest_time and events[i][0] < res:
                 res = events[i][0]
 
         return res
